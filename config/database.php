@@ -1,2 +1,2 @@
 <?php
-$pdo = new PDO('mysql:host=blog.local;dbname=Blog', 'user', 'password');
+$pdo = new PDO('mysql:host=localhost;dbname=Blog', 'Aurelie_vauquelin', '23Manatea');
