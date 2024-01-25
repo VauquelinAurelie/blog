@@ -1,8 +1,7 @@
 
 <?php
-"hello world";
-include '../app/persistances/blogPostData.php';
+echo "hello world";
+require '../app/persistances/blogPostData.php';
+$arrayBlogPost = lastBlogPost($pdo);
 
-lastBlogPost($pdo);
-
-var_dump(array());
+var_dump($arrayBlogPost);
