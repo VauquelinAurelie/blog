@@ -1,5 +1,4 @@
-SELECT
-    articles.id, title, publication, authors.name
+SELECT*
 FROM
     articles
         INNER JOIN
