@@ -1,4 +1,4 @@
-## diagramme conditions posts
+## Diagramme conditions posts
 ```mermaid
 graph TD
     A[start] --> B[get all posts from database]
@@ -9,7 +9,7 @@ graph TD
     F -- Yes --> E
     F -- No --> G[End]
 ```
-## diagramme structure blog
+## Diagramme structure blog
 ```mermaid
 sequenceDiagram
     User ->>index.php: ?action=
@@ -24,4 +24,21 @@ sequenceDiagram
     blogPostData.php-->>homeController.php: blogPosts
     homeController.php->>home.tpl.php: blogPosts
     home.tpl.php-->>User: display blogPosts
+```
+
+## Afficher un article
+```mermaid
+sequenceDiagram
+    User->>index.php: ?action=
+    index.php->>blogPostsController.php: include
+    blogPostsController.php->>blogPostData.php: blogPostById() & commentsByBlogPost()
+    blogPostData.php->>PDO: prepare()
+    PDO-->>blogPostData.php: PDOStatement
+    blogPostData.php->>PDOStatement: execute()
+    PDOStatement-->>blogPostData.php: isSuccess
+    blogPostData.php->>PDOStatement: fetchAll()
+    PDOStatement-->>blogPostData.php: blogPosts
+    blogPostData.php-->>blogPostsController.php: blogPosts
+    blogPostsController.php->>blogPosts.tpl.php: blogPosts
+    blogPosts.tpl.php-->>User: display blogPosts
 ```
