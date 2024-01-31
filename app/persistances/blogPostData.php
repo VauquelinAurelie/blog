@@ -53,3 +53,10 @@ function blogPostUpdate(PDO $pdo, $articlesId, $title, $content, $rating)
 
 }
 
+//Supprimer un article
+function blogPostDelete(PDO $pdo, $articlesId):void
+{
+    $deletePost = "DELETE FROM articles
+    WHERE id = '$articlesId'";
+    $pdo->query($deletePost);
+}
