@@ -2,11 +2,11 @@
 //liste des 10 deniers articles du blog avec leurs auteurs
 function lastBlogPost(PDO $pdo)
 {
-    $query = "SELECT*
+    $query = "SELECT articles.id, articles.title, articles.content, articles.publication, authors.pseudo 
         FROM articles
-        INNER JOIN authors ON articles.authors_id = authors.id
-        WHERE articles.id < 11 AND publication >2023-03-10
-        ORDER BY articles.id ASC";
+        INNER JOIN authors ON authors.id = articles.authors_id
+        ORDER BY articles.id DESC
+        LIMIT 10";
     $Statement = $pdo->query($query);
     return $Statement->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -22,7 +22,7 @@ function blogPostById(PDO $pdo, $articlesId)
     return $resultPostById->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Afficher les commentaires
+// Afficher les commentaires de l'article affiché
 function commentsByBlogPost(PDO $pdo, $articlesId)
 {
     $commentPost = "SELECT comments.id, comments.content, comments.date_publication
@@ -32,3 +32,33 @@ function commentsByBlogPost(PDO $pdo, $articlesId)
     $resultCommentPost = $pdo->query($commentPost);
     return $resultCommentPost->fetchAll(PDO::FETCH_ASSOC);
 }
+
+// Créer un article
+function blogPostCreate(PDO $pdo, $title, $content, $rating)
+{
+    $createPost = "INSERT INTO articles (title, content, publication, end_publication, rating, authors_id) 
+        VALUES ('$title', '$content', NOW(), '2024-03-15', '$rating', 1)";
+    $pdo->query($createPost);
+    header('Location: index.php?action=home');
+}
+
+
+
+// Modifier un article
+//function blogPostUpdate($pdo, $title, $content, $rating)
+//{
+//    $updatearticle = "UPDATE articles
+//    SET title = $_POST[title], content = $_POST[content], rating = $_POST[rating]
+//    WHERE id = $articlesId";
+//    $pdo->query($updatearticle);
+//    header('location : index.php?action=home');
+//
+//}
+
+//Supprimer un article
+//function blogPostDelete($pdo){
+//    $deletePost = "DELETE FROM articles
+//    WHERE id = $articlesId
+//    $pdo->query($deletePost);
+//    header('location : index.php?action=home');
+//}
