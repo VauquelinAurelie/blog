@@ -13,7 +13,6 @@ if (!isset($arrayBlogPost)){
         echo $row["end_publication"]."<br>";
         echo $row["rating"]."<br>";
         echo $row["authors_id"]."<br>";
-        echo $row["id"]."<br>";
         echo $row["pseudo"]."<br>";
         echo $row["name"]."<br><br>";
     }

@@ -8,4 +8,4 @@ $articlesId=filter_input(INPUT_GET,'id', FILTER_VALIDATE_INT);
 $article = blogPostById($pdo, $articlesId);
 $comments = commentsByBlogPost($pdo, $articlesId);
 
-include '../ressources/views/layouts/blogPost.tpl.php';
+include '../ressources/views/blogPost.tpl.php';

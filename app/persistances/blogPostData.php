@@ -1,5 +1,6 @@
 <?php
 //liste des 10 deniers articles du blog avec leurs auteurs
+global $articlesId;
 function lastBlogPost(PDO $pdo)
 {
     $query = "SELECT articles.id, articles.title, articles.content, articles.publication, authors.pseudo 
@@ -42,23 +43,13 @@ function blogPostCreate(PDO $pdo, $title, $content, $rating)
     header('Location: index.php?action=home');
 }
 
-
-
 // Modifier un article
-//function blogPostUpdate($pdo, $title, $content, $rating)
-//{
-//    $updatearticle = "UPDATE articles
-//    SET title = $_POST[title], content = $_POST[content], rating = $_POST[rating]
-//    WHERE id = $articlesId";
-//    $pdo->query($updatearticle);
-//    header('location : index.php?action=home');
-//
-//}
+function blogPostUpdate(PDO $pdo, $articlesId, $title, $content, $rating)
+{
+    $updatePost = "UPDATE articles
+    SET title = '$title', content = '$content', rating = '$rating'
+    WHERE id = '$articlesId'";
+    $pdo->query($updatePost);
 
-//Supprimer un article
-//function blogPostDelete($pdo){
-//    $deletePost = "DELETE FROM articles
-//    WHERE id = $articlesId
-//    $pdo->query($deletePost);
-//    header('location : index.php?action=home');
-//}
+}
+
